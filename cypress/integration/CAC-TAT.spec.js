@@ -10,7 +10,7 @@ cy.visit('./src/index.html')
 
 cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
     })
-    it.only('preencha os campos obrigatórios e envia o formulário', function() {
+    it('preencha os campos obrigatórios e envia o formulário', function() {
 const longText = 'teste teste teste teste teste teste teste'
 
 cy.get('#firstName').type('Victor')
@@ -47,6 +47,20 @@ cy.get('#phone').type('abcdefg').should('have.value', '')
 }
 
 )
+it.only('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
+    cy.get('#firstName').type('Victor')
+
+    cy.get('#lastName').type('santos')
+
+    cy.get('#email').type('victor@gemail.com')
+    cy.get('#phone-checkbox').click()
+    cy.get('#open-text-area').type('teste')
+
+    cy.get('button[type="submit"]').click()
+    cy.get('.error').should('be.visible')
+
+
+} ) 
 
   })
   
