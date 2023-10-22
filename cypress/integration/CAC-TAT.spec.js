@@ -10,7 +10,7 @@ cy.visit('./src/index.html')
 
 cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
     })
-    it('preencha os campos obrigatórios e envia o formulário', function() {
+    it.only('preencha os campos obrigatórios e envia o formulário', function() {
 const longText = 'teste teste teste teste teste teste teste'
 
 cy.get('#firstName').type('Victor')
@@ -23,7 +23,7 @@ cy.get('#email').type('victor@gamil.com')
 cy.get('#open-text-area').type(longText, {delay: 0})
 
 
-cy.get('button[type="submit"]')
+cy.get('button[type="submit"]').click()
 
 cy.get('.success').should('be.visible')
 
@@ -41,7 +41,7 @@ cy.get('.success').should('be.visible')
     
     )
 
-it.only('campo telefone ainda continua vazio quando preenchido com valor não nmérico', function(){
+it('campo telefone ainda continua vazio quando preenchido com valor não nmérico', function(){
 cy.get('#phone').type('abcdefg').should('have.value', '')
 
 }
