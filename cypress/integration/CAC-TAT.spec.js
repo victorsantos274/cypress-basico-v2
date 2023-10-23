@@ -56,11 +56,18 @@ it.only('validação quando tornamos o telefone obrigatório, e exibe mensagem d
     cy.get('#phone-checkbox').click()
     cy.get('#open-text-area').type('teste')
 
-    cy.get('button[type="submit"]').click()
+    cy.get('button[type="submit"]').click   ()
     cy.get('.error').should('be.visible')
 
 
 } ) 
+
+it.only('verifica que foi digitado em campo corretamente, depois que foi limpo corretamente', function(){
+
+    cy.get('#firstName').type('Victor').should('have.value', 'Victor').clear().should('have.value', '')
+    cy.get('#lastName').type('Santos').should('have.value', 'Santos').clear().should('have.value', '')
+    cy.get('#email').type('victor@gamil.com').should('have.value', 'victor@gamil.com').clear().should('have.value', '')
+})
 
   })
   
