@@ -47,7 +47,7 @@ cy.get('#phone').type('abcdefg').should('have.value', '')
 }
 
 )
-it.only('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
+it('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
     cy.get('#firstName').type('Victor')
 
     cy.get('#lastName').type('santos')
@@ -62,11 +62,17 @@ it.only('validação quando tornamos o telefone obrigatório, e exibe mensagem d
 
 } ) 
 
-it.only('verifica que foi digitado em campo corretamente, depois que foi limpo corretamente', function(){
+it('verifica que foi digitado em campo corretamente, depois que foi limpo corretamente', function(){
 
     cy.get('#firstName').type('Victor').should('have.value', 'Victor').clear().should('have.value', '')
     cy.get('#lastName').type('Santos').should('have.value', 'Santos').clear().should('have.value', '')
     cy.get('#email').type('victor@gamil.com').should('have.value', 'victor@gamil.com').clear().should('have.value', '')
+})
+
+it.only('verificar mensagem de erro, ao tentar enviar formulário sem preencher campos obrigatórios', function(){
+cy.get('button[type="submit"]').click()
+cy.get('.error').should('be.visible')
+    
 })
 
   })
