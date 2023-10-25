@@ -69,11 +69,19 @@ it('verifica que foi digitado em campo corretamente, depois que foi limpo corret
     cy.get('#email').type('victor@gamil.com').should('have.value', 'victor@gamil.com').clear().should('have.value', '')
 })
 
-it.only('verificar mensagem de erro, ao tentar enviar formulário sem preencher campos obrigatórios', function(){
+it('verificar mensagem de erro, ao tentar enviar formulário sem preencher campos obrigatórios', function(){
 cy.get('button[type="submit"]').click()
 cy.get('.error').should('be.visible')
     
 })
 
+it.only('envia formulário com sucesso com comando customizado', function(){
+cy.fillMandatoryFieldsAndSubmit()
+
+cy.get('.success').should('be.visible')
+
+
+}
+)
   })
   
