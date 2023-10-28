@@ -16,12 +16,11 @@ const longText = 'teste teste teste teste teste teste teste'
 cy.get('#firstName').type('Victor')
 
 
-
 cy.get('#lastName').type('Santos')
 
-cy.get('#email').type('victor@gamil.com')
-cy.get('#open-text-area').type(longText, {delay: 0})
+cy.get('#email').type('victor@gmail.com')
 
+cy.get('#open-text-area').type(longText, {delay: 0})
 
 cy.get('button[type="submit"]').click()
 
@@ -31,9 +30,13 @@ cy.get('.success').should('be.visible')
 
     it('exibe mensagem de erro ao submiter e-mail com formatação inválida,', function(){
         cy.get('#firstName').type('Victor')
+
         cy.get('#lastName').type('santos')
+
         cy.get('#email').type('victor,gmail.com')
+
         cy.get('#open-text-area').type('testes')
+
         cy.get('button[type="submit').click()
 
         cy.get('.error').should('be.visible')
@@ -47,18 +50,21 @@ cy.get('#phone').type('abcdefg').should('have.value', '')
 }
 
 )
+
 it('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
+
     cy.get('#firstName').type('Victor')
 
     cy.get('#lastName').type('santos')
 
     cy.get('#email').type('victor@gemail.com')
+
     cy.get('#phone-checkbox').click()
     cy.get('#open-text-area').type('teste')
 
     cy.get('button[type="submit"]').click   ()
-    cy.get('.error').should('be.visible')
 
+    cy.get('.error').should('be.visible')
 
 } ) 
 
@@ -66,22 +72,30 @@ it('verifica que foi digitado em campo corretamente, depois que foi limpo corret
 
     cy.get('#firstName').type('Victor').should('have.value', 'Victor').clear().should('have.value', '')
     cy.get('#lastName').type('Santos').should('have.value', 'Santos').clear().should('have.value', '')
+
     cy.get('#email').type('victor@gamil.com').should('have.value', 'victor@gamil.com').clear().should('have.value', '')
+
 })
 
 it('verificar mensagem de erro, ao tentar enviar formulário sem preencher campos obrigatórios', function(){
+
 cy.get('button[type="submit"]').click()
+
 cy.get('.error').should('be.visible')
     
 })
 
-it.only('envia formulário com sucesso com comando customizado', function(){
+it('envia formulário com sucesso com comando customizado', function(){
 cy.fillMandatoryFieldsAndSubmit()
 
 cy.get('.success').should('be.visible')
-
 
 }
 )
   })
   
+  it.only('seleciona um produto (Youtube) por seu texto', function() {
+cy.get('#product').select('YouTube').should('have.value', 'YouTube')
+    
+
+  })
