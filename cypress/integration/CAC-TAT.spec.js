@@ -92,10 +92,32 @@ cy.get('.success').should('be.visible')
 
 }
 )
-  })
-  
-  it.only('seleciona um produto (Youtube) por seu texto', function() {
-cy.get('#product').select('YouTube').should('have.value', 'YouTube')
+it.only('seleciona um produto (Youtube) por seu texto', function() {
+    cy.get('#product').select('YouTube').should('have.value', 'youtube')
+        
     
+      })
+
+      it.only('Escolha produto pelo  seu                value', function() {
+
+cy.get('#product').select('mentoria').should('have.value', 'mentoria')
+
+      })
+
+it.only('selecione o blog pelo seu indice', function() {
+
+        cy.get('#product').select(1).should('have.value', 'blog')
+})
+
+it.only('marca tipo de atendimento feedback', function() {
+
+    cy.get('input[type="radio"][value="feedback"]').check().should('have.value', 'feedback')
+})
+
+
+
+
 
   })
+  
+  
