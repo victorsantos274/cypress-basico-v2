@@ -124,7 +124,19 @@ cy.get('input[type="radio"]').should('have.length', 3).each(function($radio) {
 
 })
 
+it.only('marca todos os checkbox, e desmarca o último', function() {
+cy.get('input[type="checkbox"]')
 
+.check()
+
+.should('be.checked')
+
+.last()
+.uncheck()
+.should('not.be.checked')
+
+
+})
 
 
   })
