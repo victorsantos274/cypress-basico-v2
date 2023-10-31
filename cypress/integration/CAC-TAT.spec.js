@@ -51,7 +51,7 @@ cy.get('#phone').type('abcdefg').should('have.value', '')
 
 )
 
-it('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
+it.only('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
 
     cy.get('#firstName').type('Victor')
 
@@ -59,7 +59,7 @@ it('validação quando tornamos o telefone obrigatório, e exibe mensagem de err
 
     cy.get('#email').type('victor@gemail.com')
 
-    cy.get('#phone-checkbox').click()
+    cy.get('#phone-checkbox').check()
     cy.get('#open-text-area').type('teste')
 
     cy.get('button[type="submit"]').click   ()
@@ -92,29 +92,29 @@ cy.get('.success').should('be.visible')
 
 }
 )
-it.only('seleciona um produto (Youtube) por seu texto', function() {
+it('seleciona um produto (Youtube) por seu texto', function() {
     cy.get('#product').select('YouTube').should('have.value', 'youtube')
         
     
       })
 
-      it.only('Escolha produto pelo  seu                value', function() {
+      it('Escolha produto pelo  seu                value', function() {
 
 cy.get('#product').select('mentoria').should('have.value', 'mentoria')
 
       })
 
-it.only('selecione o blog pelo seu indice', function() {
+it('selecione o blog pelo seu indice', function() {
 
         cy.get('#product').select(1).should('have.value', 'blog')
 })
 
-it.only('marca tipo de atendimento feedback', function() {
+it('marca tipo de atendimento feedback', function() {
 
     cy.get('input[type="radio"][value="feedback"]').check().should('have.value', 'feedback')
 })
 
-it.only('marca tipo de atendimento', function() {
+it('marca tipo de atendimento', function() {
 cy.get('input[type="radio"]').should('have.length', 3).each(function($radio) {
 
     cy.wrap($radio).check()
@@ -124,7 +124,7 @@ cy.get('input[type="radio"]').should('have.length', 3).each(function($radio) {
 
 })
 
-it.only('marca todos os checkbox, e desmarca o último', function() {
+it('marca todos os checkbox, e desmarca o último', function() {
 cy.get('input[type="checkbox"]')
 
 .check()
@@ -136,6 +136,37 @@ cy.get('input[type="checkbox"]')
 .should('not.be.checked')
 
 
+})
+
+it.only('seleciona um arquivo da pasta fextures', function() {
+
+    cy.get('input[type="file"]')
+.should('not.have.value')
+.selectFile('./cypress/fixtures/example.json')
+.should(function($input) {
+expect($input[0].files[0].name).to.equal('example.json')
+
+})
+})
+
+it.only('seleciona um arquivo simulando um drag-and-drop', function() {
+cy.get('input[type="file"]')
+.should('not.have.value')
+.selectFile('./cypress/fixtures/example.json', { action: "drag-drop"})
+.should(function($input) {
+    expect($input[0].files[0].name).to.equal('example.json')
+})
+
+})
+it.only('seleciona um arquivo utilizando uma fixtures a qual foi dada um "alias"', function() {
+cy.fixture('example.json').as('sampleFile')
+cy.get('input[type="file')
+.selectFile('@sampleFile')
+.should(function($input) {
+
+    expect($input[0].files[0].name).to.equal('example.json')
+})
+    
 })
 
 
