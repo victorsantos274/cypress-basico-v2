@@ -51,7 +51,7 @@ cy.get('#phone').type('abcdefg').should('have.value', '')
 
 )
 
-it.only('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
+it('validação quando tornamos o telefone obrigatório, e exibe mensagem de erro ao enviar sem preencher o campo telefone ', function() {
 
     cy.get('#firstName').type('Victor')
 
@@ -138,7 +138,7 @@ cy.get('input[type="checkbox"]')
 
 })
 
-it.only('seleciona um arquivo da pasta fextures', function() {
+it('seleciona um arquivo da pasta fextures', function() {
 
     cy.get('input[type="file"]')
 .should('not.have.value')
@@ -149,7 +149,7 @@ expect($input[0].files[0].name).to.equal('example.json')
 })
 })
 
-it.only('seleciona um arquivo simulando um drag-and-drop', function() {
+it('seleciona um arquivo simulando um drag-and-drop', function() {
 cy.get('input[type="file"]')
 .should('not.have.value')
 .selectFile('./cypress/fixtures/example.json', { action: "drag-drop"})
@@ -158,7 +158,7 @@ cy.get('input[type="file"]')
 })
 
 })
-it.only('seleciona um arquivo utilizando uma fixtures a qual foi dada um "alias"', function() {
+it('seleciona um arquivo utilizando uma fixtures a qual foi dada um "alias"', function() {
 cy.fixture('example.json').as('sampleFile')
 cy.get('input[type="file')
 .selectFile('@sampleFile')
@@ -169,6 +169,18 @@ cy.get('input[type="file')
     
 })
 
+it('verifica que a página a"Política de privacidade" abre em outra aba sem a necessidade de um click', function() {
+cy.get('#privacy a').should('have.attr', 'target', '_blank' )
+
+})
+
+it('acessa a página da política de privacidade removendo o target e então clicando no link', function() {
+cy.get('#privacy a')
+.invoke('removeAttr', 'target')
+.click()
+cy.contains('Talking About Testing')
+
+})
 
   })
   
