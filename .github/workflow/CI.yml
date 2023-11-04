@@ -17,7 +17,7 @@ uses:   actions/checkout@v2
 # install NPM detendencies,cachethem correctly
 # and run all Cypress tests
 
-- name:  Cypress run
+- name:  "Cypress run"
 
 uses: cypress-io/github-action@v2
 
