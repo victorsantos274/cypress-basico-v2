@@ -1,22 +1,12 @@
-name: end-to-end tests
-
+name: End-to-end tests 🧪
 on: [push]
-
-jobs:   
-
-cypress-run:
-
-runs-on:  ubuntu-30.04
-
-steps: 
-
--name: Checkout
-
-uses:   actions/checkout@v2
-
-# install NPM detendencies,cachethem correctly
-# and run all Cypress tests
-- name:  Cypress run
-
-uses: cypress-io/github-action@v2
-
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
