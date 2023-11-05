@@ -1,6 +1,8 @@
 /// <reference types="Cypress" />
 
 describe('Central de Atendimento ao Cliente TAT', function() {
+const trhee_seconds_in_ms = 3000;
+
     beforeEach(() => {
 cy.visit('./src/index.html')
 
@@ -10,9 +12,9 @@ cy.visit('./src/index.html')
 
 cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
     })
-    it('preencha os campos obrigatórios e envia o formulário', function() {
+    it.only('preencha os campos obrigatórios e envia o formulário', function() {
 const longText = 'teste teste teste teste teste teste teste'
-
+cy.clock()
 cy.get('#firstName').type('Victor')
 
 
@@ -25,6 +27,12 @@ cy.get('#open-text-area').type(longText, {delay: 0})
 cy.get('button[type="submit"]').click()
 
 cy.get('.success').should('be.visible')
+
+cy.tick(trhee_seconds_in_ms)
+
+cy.get('.success').should('not.be.visible')
+
+
 
     })
 
