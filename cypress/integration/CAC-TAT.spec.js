@@ -12,7 +12,7 @@ cy.visit('./src/index.html')
 
 cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
     })
-    it.only('preencha os campos obrigatórios e envia o formulário', function() {
+    it('preencha os campos obrigatórios e envia o formulário', function() {
 const longText = 'teste teste teste teste teste teste teste'
 cy.clock()
 cy.get('#firstName').type('Victor')
@@ -188,6 +188,16 @@ cy.get('#privacy a')
 .click()
 cy.contains('Talking About Testing')
 
+})
+
+it.only('esconde e exibe a mensagem de sucesso com .invoke', function() {
+cy.get('.success')
+.should('not.be.visible')
+.invoke('show')
+.should('be.visible')
+.and('contains', 'Mensagem' )
+.invoke('hide')
+.should('not.be.visible')
 })
 
   })
